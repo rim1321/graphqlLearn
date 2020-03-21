@@ -2,12 +2,15 @@ const express = require('express');
 const graphqlHTTP = require('express-graphql');
 const schema = require('../schema/schema');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const uri = "mongodb+srv://admin:admin@graphql-learn-jvuql.mongodb.net/graphQl-learn?retryWrites=true&w=majority";
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const app = express();
 const PORT = 3005;
+
+app.use(cors());
 
 app.use('/graphql', graphqlHTTP({
     schema,
